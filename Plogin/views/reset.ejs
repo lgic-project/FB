@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reset Password</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #343a40;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .contain {
+      margin-bottom: 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .animation-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: url('./images/Food.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .btn-primary {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      border: none;
+      border-radius: 4px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .btn-primary:disabled {
+      background-color: #999;
+      cursor: not-allowed;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-center a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .login-button {
+          display: inline-block;
+          padding: 10px 20px;
+          font-size: 1rem;
+          border-radius: 30px;
+          border: none;
+          outline: none;
+          background-color: hwb(0 10% 90%);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          color: #efdddd;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+}
+
+       .login-button:hover {
+          background-color: #eee;
+}
+
+       .login-button:active {
+          background-color: #ddd;
+}
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <div class="animation-bg"></div>
+    <div class="card">
+      <form id="resetForm" action="/reset-password" method="POST" onsubmit="return verifyCode(event)">
+        <div class="form-group">
+          <% if (message.length > 0) { %>
+            <div class="error-message">
+              <%= message %>
+            </div>
+          <% } %>
+          
+
+        <div class="form-group">
+          <input type="email" name="email" id="email" class="form-control" required placeholder="Email"/>
+        </div>
+
+        <div class="form-group">
+          <input type="password" name="new-password" id="new-password" class="form-control" required placeholder="New Password" />
+        </div>
+
+        <div class="form-group">
+          <input type="password" name="confirm-password" id="confirm-password" class="form-control" required placeholder= "Confirm Password" />
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="verification-code" id="verification-code" class="form-control" required placeholder="Verification Code" />
+        </div>
+
+        <button id="resetBtn" type="submit" class="btn btn-primary" disabled>
+          Reset Password
+        </button>
+      </form>      
+      <div class="text-center">
+        <p>Remember Password? 
+          <form action="/login? " method="POST">
+            <button class="login-button" type="submit">LogIn</button>
+          </form>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="contain">
+  <button id="sendCodeBtn" type="button" class="btn btn-primary">Send Verification Code</button>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const emailInput = document.getElementById('email');
+      const newPasswordInput = document.getElementById('new-password');
+      const confirmPasswordInput = document.getElementById('confirm-password');
+      const verificationCodeInput = document.getElementById('verification-code');
+      const resetBtn = document.getElementById('resetBtn');
+      const sendCodeBtn = document.getElementById('sendCodeBtn');
+
+      emailInput.addEventListener('input', validateForm);
+      newPasswordInput.addEventListener('input', validateForm);
+      confirmPasswordInput.addEventListener('input', validateForm);
+      verificationCodeInput.addEventListener('input', validateForm);
+      sendCodeBtn.addEventListener('click', sendVerificationCode);
+
+      function validateForm() {
+        const email = emailInput.value.trim();
+        const newPassword = newPasswordInput.value.trim();
+        const confirmPassword = confirmPasswordInput.value.trim();
+        const verificationCode = verificationCodeInput.value.trim();
+
+        if (email !== '' && newPassword !== '' && confirmPassword !== '' && verificationCode !== '' && newPassword === confirmPassword) {
+          resetBtn.removeAttribute('disabled');
+        } else {
+          resetBtn.setAttribute('disabled', 'true');
+        }
+      }
+
+      function sendVerificationCode() {
+        const verificationCode = generateVerificationCode(6);
+        alert(`Verification code: ${verificationCode}`);
+      }
+
+      function generateVerificationCode(length) {
+        let code = '';
+        const characters = '0123456789';
+
+        for (let i = 0; i < length; i++) {
+          const randomIndex = Math.floor(Math.random() * characters.length);
+          code += characters.charAt(randomIndex);
+        }
+
+        return code;
+      }
+    });
+
+    function verifyCode(event) {
+      // after password reset is successful
+      window.location.href = "/login";
+      return true;
+    }
+  </script>
+</body>
+</html>
