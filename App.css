@@ -28,6 +28,10 @@
   margin-top: 10%;
 
 }
+.login{
+  margin-left: 45%;
+  margin-top: 10%;
+}
 
 .button{
   padding: 8px;
@@ -35,6 +39,15 @@
   width: 10%;
   margin-left: 65px;
   background-color: #0c84a5
+}
+
+.btn{
+  padding: 8px;
+  border: #bb7654;
+  width: 10%;
+  margin-left: 65px;
+  background-color: #0c84a5
+
 }
 .input {
   display: block;
