@@ -1,3 +1,7 @@
+Login and SignUp and Reset page  
+ 
+ 
+ 
  Install nodejs   
  Create folder                       
                           
