@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>FoodBazar</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&family=Quicksand:wght@300&display=swap');
+
+        * {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            outline: none;
+            border: none;
+            text-transform: capitalize;
+            transition: all .2s linear;
+        }
+
+        html {
+            font-size: 62.5%;
+            overflow-x: hidden;
+            scroll-padding-top: 5.5rem;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --green: #27ae60;
+            --black: #192a56;
+            --light-color: #666;
+            --box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+        }
+
+        section {
+            padding: 10rem 10%;
+        }
+
+        section:nth-child(even) {
+            background: #eee;
+        }
+
+        .btn {
+            margin-top: 1rem;
+            display: inline-block;
+            font-size: 1.7rem;
+            color: #fff;
+            background: var(--black);
+            border-radius: .5rem;
+            cursor: pointer;
+            padding: .8rem 3rem;
+
+        }
+
+        .btn:hover {
+            background: #192a56;
+            letter-spacing: .1rem;
+
+        }
+
+        .swiper-pagination-bullet-active{
+            background: var(--green);
+        }        
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            padding: 1rem 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            box-shadow: var(--box-shadow);
+        }
+
+        header .logo {
+            color: var(--black);
+            font-size: 2.5rem;
+            font-weight: bolder;
+        }
+
+        header .logo i {
+            color: var(--green);
+
+
+        }
+
+        header .navbar a {
+            font-size: 1.7em;
+            border-radius: .5rem;
+            padding: .5rem 1.5rem;
+            color: var(--light-color);
+        }
+
+        header .navbar a.active,
+        header .navbar a:hover {
+            color: #fff;
+            background-color: #666;
+        }
+
+        header .icons i,
+        header .icons a {
+            cursor: pointer;
+            margin-left: .5rem;
+            height: 4.5rem;
+            line-height: 4.5rem;
+            width: 4.5rem;
+            text-align: center;
+            font-size: 1.7rem;
+            color: black;
+            border-radius: 50%;
+            background: #eee;
+        }
+
+        header .icons i:hover,
+        header .icons a:hover {
+            color: #fff;
+            background: #666;
+            transform: rotate(360deg);
+        }
+
+        header .icons #menu-bars {
+            display: none;
+        }
+
+        #search-form {
+            position: fixed;
+            top: 0%;
+            left: 0%;
+            height: 100%;
+            width: 100%;
+            z-index: 2;
+            background: black;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 0 1rem;
+        }
+
+        #search-form.active {
+            display: flex;
+        }
+
+        #search-form #search-box {
+            width: 50rem;
+            border-bottom: .1rem solid #fff;
+            padding: 1rem 0;
+            color: #fff;
+            font-size: 3rem;
+            text-transform: none;
+            background: none;
+            text-align: center;
+
+        }
+
+        #search-form #search-box::placeholder {
+            color: #eee;
+        }
+
+        #search-form #search-box::-webkit-search-cancel-button {
+            -webkit-appearance: none;
+        }
+
+        #search-form label {
+            color: #fff;
+            cursor: pointer;
+            font-size: 3rem;
+        }
+
+        #search-form label:hover {
+            color: #666;
+        }
+
+        #search-form #close {
+            position: absolute;
+            color: #fff;
+            cursor: pointer;
+            right: 4rem;
+            top: 20%;
+            font-size: 5rem;
+            font-size: large;
+            font-style: normal;
+        }
+
+        #search-form #close:hover {
+            color: #666;
+        }
+
+        .search-logout-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-loout-container .icons {
+            margin-right: 1rem;
+        }
+
+        .search-logout-container .login {
+            margin-right: 1rem;
+        }
+
+        .logout {
+            display: inline-block;
+            padding: 15px 20px;
+            font-size: 1.5rem;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+            background-color: hwb(0 5% 94%);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            color: #f7f9fb;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+        }
+
+        .logout:hover {
+            background-color: #eee;
+        }
+
+        .home .home-slider .slide {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 9rem;
+            padding-top: 10rem;
+
+        }
+
+        .home .home-slider .slide .content {
+            flex: 1 1 45rem;
+        }
+
+        .home .home-slider .slide .image {
+            flex: 1 1 45rem;
+        }
+
+        .home .home-slider .slide .image img {
+            width: 100%;
+        }
+
+        .home .home-slider .slide .content span {
+            color: #27ae60;
+            font-size: 2.5rem;
+        }
+
+        .home .home-slider .slide .content h3 {
+            color: #0f0f0f;
+            font-size: 7rem;
+        }
+
+        .home .home-slider .slide .content h3 {
+            font-size: 5rem;
+        }
+
+
+        @media (max-width:991px) {
+            html {
+                font-size: 55%;
+            }
+
+            header {
+                padding: 1rem 2rem;
+            }
+
+            section {
+                padding:2rem;
+            }                      
+        }
+
+        @media (max-width:768px) {
+            header .icons #menu-bars {
+                display: inline-block;
+            }
+
+            header .navbar {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: #fff;
+                border-top: .1rem solid rgba(0, 0, 0, .2);
+                border-bottom: .1rem solid rgba(0, 0, 0, .2);
+                padding: 1rem;
+                clip-path: polygon(0 0, 100% 0, 0 0);
+            }
+
+            header .navbar.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+                -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            }
+
+
+            header .navbar a {
+                display: block;
+                padding: 1.5rem;
+                margin: 1rem;
+                font-size: 2rem;
+                background: #eee;
+            }
+
+            #search-form #search-box {
+                width: 90%;
+                margin: 0 1rem;
+            }
+        }
+
+
+        @media (max-width:991px) {
+            html {
+                font-size: 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="#" class="logo"><i class="fas fa-utensils"></i> FoodBazar</a>
+        <nav class="navbar">
+            <a href="#menu">Menu</a>
+            <a href="#order">Order</a>
+            <a href="#review">Review</a>
+            <a href="#about">About</a>
+        </nav>
+        <div class="search-logout-container">
+            <div class="icons">
+                <i class="fas fa-bars" id="menu-bars"></i>
+                <i class="fas fa-search" id="search-icon"></i>
+                <a href="#" class="fas fa-heart"></a>
+                <a href="#" class="fas fa-shopping-cart"></a>
+            </div>
+                <a class="logout" href="#logout"><h5>Log Out</h5></a>
+        </div>
+    </header>
+
+    <form action="" id="search-form">
+        <input type="search" placeholder="Search Food or Restaurant" name="" id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+        <i id="close">close</i>
+    </form>
+
+    <section class="home" id="home">
+        <div class="swiper-container home-slider">
+            <div class="swiper-wrapper wrapper">
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span> Today Special Food </span>
+                        <h3>Spicy Noodles</h3>
+                        <a href="#" class="btn">Order now</a>
+                    </div>
+                    <div class="image">
+                        <img src="images/sn.jpg" alt="">
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span> Today Special Food </span>
+                        <h3>Momo</h3>
+                        <a href="#" class="btn">Order now</a>
+                    </div>
+                    <div class="image">
+                        <img src="images/Momo.jpg" alt="">
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span> Today Special Food </span>
+                        <h3>Pizza</h3>
+                        <a href="#" class="btn">Order now</a>
+                    </div>
+                    <div class="image">
+                        <img src="images/pizza.jpg" alt="">
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span> Today Special Food </span>
+                        <h3>Samosa</h3>
+                        <a href="#" class="btn">Order now</a>
+                    </div>
+                    <div class="image">
+                        <img src="images/samosa.jpg" alt="">
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span> Today Special Food </span>
+                        <h3>Burger</h3>
+                        <a href="#" class="btn">Order now</a>
+                    </div>
+                    <div class="image">
+                        <img src="images/bur.jpg" alt="">
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="swiper-pagination"></div>
+
+        </div>
+
+    </section>
+
+    
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        let menu = document.querySelector('#menu-bars');
+        let navbar = document.querySelector('.navbar');
+
+        menu.onclick = () => {
+            menu.classList.toggle('fa-times');
+            navbar.classList.toggle('active');
+        }
+
+        window.onscroll = () => {
+            menu.classList.toggle('fa-times');
+            navbar.classList.toggle('active');
+        }
+        document.querySelector('#search-icon').onclick = () => {
+            document.querySelector('#search-form').classList.toggle('active');
+        }
+
+        document.querySelector('#close').addEventListener('click', () => {
+            document.querySelector('#search-form').classList.remove('active');
+        });
+
+        var swiper = new Swiper(".home-slider", {
+            spaceBetween: 30,
+            centeredSlides: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            loop:true,
+        });    
+
+
+
+    </script>
+</body>
+
+</html>
