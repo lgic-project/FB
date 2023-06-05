@@ -5,10 +5,10 @@ First Week: Team Formed
             Resource Collection
             language learned
             
-Secound Week: MERN learned
+Secound Week: MEN learned
               created simple Login and SignUp and Reset Page page using EJS and Nodejs
 
-Third Week:  MERN learned
+Third Week:  MEN learned
              Running task Dashboard
              Connect database
              Integrate login and Signup API
