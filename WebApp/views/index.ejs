@@ -5,339 +5,28 @@
     <title>FoodBazar</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&family=Quicksand:wght@300&display=swap');
-
-        * {
-            font-family: 'Nunito', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            text-decoration: none;
-            outline: none;
-            border: none;
-            text-transform: capitalize;
-            transition: all .2s linear;
-        }
-
-        html {
-            font-size: 62.5%;
-            overflow-x: hidden;
-            scroll-padding-top: 5.5rem;
-            scroll-behavior: smooth;
-        }
-
-        :root {
-            --green: #27ae60;
-            --black: #192a56;
-            --light-color: #666;
-            --box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
-        }
-
-        section {
-            padding: 10rem 10%;
-        }
-
-        section:nth-child(even) {
-            background: #eee;
-        }
-
-        .btn {
-            margin-top: 1rem;
-            display: inline-block;
-            font-size: 1.7rem;
-            color: #fff;
-            background: var(--black);
-            border-radius: .5rem;
-            cursor: pointer;
-            padding: .8rem 3rem;
-
-        }
-
-        .btn:hover {
-            background: #192a56;
-            letter-spacing: .1rem;
-
-        }
-
-        .swiper-pagination-bullet-active{
-            background: var(--green);
-        }        
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #fff;
-            padding: 1rem 7%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            z-index: 1000;
-            box-shadow: var(--box-shadow);
-        }
-
-        header .logo {
-            color: var(--black);
-            font-size: 2.5rem;
-            font-weight: bolder;
-        }
-
-        header .logo i {
-            color: var(--green);
-
-
-        }
-
-        header .navbar a {
-            font-size: 1.7em;
-            border-radius: .5rem;
-            padding: .5rem 1.5rem;
-            color: var(--light-color);
-        }
-
-        header .navbar a.active,
-        header .navbar a:hover {
-            color: #fff;
-            background-color: #666;
-        }
-
-        header .icons i,
-        header .icons a {
-            cursor: pointer;
-            margin-left: .5rem;
-            height: 4.5rem;
-            line-height: 4.5rem;
-            width: 4.5rem;
-            text-align: center;
-            font-size: 1.7rem;
-            color: black;
-            border-radius: 50%;
-            background: #eee;
-        }
-
-        header .icons i:hover,
-        header .icons a:hover {
-            color: #fff;
-            background: #666;
-            transform: rotate(360deg);
-        }
-
-        header .icons #menu-bars {
-            display: none;
-        }
-
-        #search-form {
-            position: fixed;
-            top: 0%;
-            left: 0%;
-            height: 100%;
-            width: 100%;
-            z-index: 2;
-            background: black;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 0 1rem;
-        }
-
-        #search-form.active {
-            display: flex;
-        }
-
-        #search-form #search-box {
-            width: 50rem;
-            border-bottom: .1rem solid #fff;
-            padding: 1rem 0;
-            color: #fff;
-            font-size: 3rem;
-            text-transform: none;
-            background: none;
-            text-align: center;
-
-        }
-
-        #search-form #search-box::placeholder {
-            color: #eee;
-        }
-
-        #search-form #search-box::-webkit-search-cancel-button {
-            -webkit-appearance: none;
-        }
-
-        #search-form label {
-            color: #fff;
-            cursor: pointer;
-            font-size: 3rem;
-        }
-
-        #search-form label:hover {
-            color: #666;
-        }
-
-        #search-form #close {
-            position: absolute;
-            color: #fff;
-            cursor: pointer;
-            right: 4rem;
-            top: 20%;
-            font-size: 5rem;
-            font-size: large;
-            font-style: normal;
-        }
-
-        #search-form #close:hover {
-            color: #666;
-        }
-
-        .search-logout-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .search-loout-container .icons {
-            margin-right: 1rem;
-        }
-
-        .search-logout-container .login {
-            margin-right: 1rem;
-        }
-
-        .logout {
-            display: inline-block;
-            padding: 15px 20px;
-            font-size: 1.5rem;
-            border-radius: 30px;
-            border: none;
-            outline: none;
-            background-color: hwb(0 5% 94%);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            color: #f7f9fb;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-
-        }
-
-        .logout:hover {
-            background-color: #eee;
-        }
-
-        .home .home-slider .slide {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 9rem;
-            padding-top: 10rem;
-
-        }
-
-        .home .home-slider .slide .content {
-            flex: 1 1 45rem;
-        }
-
-        .home .home-slider .slide .image {
-            flex: 1 1 45rem;
-        }
-
-        .home .home-slider .slide .image img {
-            width: 100%;
-        }
-
-        .home .home-slider .slide .content span {
-            color: #27ae60;
-            font-size: 2.5rem;
-        }
-
-        .home .home-slider .slide .content h3 {
-            color: #0f0f0f;
-            font-size: 7rem;
-        }
-
-        .home .home-slider .slide .content h3 {
-            font-size: 5rem;
-        }
-
-
-        @media (max-width:991px) {
-            html {
-                font-size: 55%;
-            }
-
-            header {
-                padding: 1rem 2rem;
-            }
-
-            section {
-                padding:2rem;
-            }                      
-        }
-
-        @media (max-width:768px) {
-            header .icons #menu-bars {
-                display: inline-block;
-            }
-
-            header .navbar {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                background: #fff;
-                border-top: .1rem solid rgba(0, 0, 0, .2);
-                border-bottom: .1rem solid rgba(0, 0, 0, .2);
-                padding: 1rem;
-                clip-path: polygon(0 0, 100% 0, 0 0);
-            }
-
-            header .navbar.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-                -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-            }
-
-
-            header .navbar a {
-                display: block;
-                padding: 1.5rem;
-                margin: 1rem;
-                font-size: 2rem;
-                background: #eee;
-            }
-
-            #search-form #search-box {
-                width: 90%;
-                margin: 0 1rem;
-            }
-        }
-
-
-        @media (max-width:991px) {
-            html {
-                font-size: 50%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
 
     <header>
-        <a href="#" class="logo"><i class="fas fa-utensils"></i> FoodBazar</a>
+        <a href="#" class="logo"><i class="fas fa-utensils"></i>FoodBazar</a>
         <nav class="navbar">
-            <a href="#menu">Menu</a>
-            <a href="#order">Order</a>
+            <a class="active" href="#home">Home</a>
+            <a href="#dishes">Dishes</a>
             <a href="#review">Review</a>
-            <a href="#about">About</a>
+            <a href="#contact">Contact us</a>
+            <a href="#about">About Us</a>
         </nav>
-        <div class="search-logout-container">
+        <div class="search-login-container">
             <div class="icons">
                 <i class="fas fa-bars" id="menu-bars"></i>
                 <i class="fas fa-search" id="search-icon"></i>
-                <a href="#" class="fas fa-heart"></a>
-                <a href="#" class="fas fa-shopping-cart"></a>
             </div>
-                <a class="logout" href="#logout"><h5>Log Out</h5></a>
+            <a class="login" href="#LogIn">
+                <h5>LogIn</h5>
+            </a>
         </div>
     </header>
 
@@ -353,8 +42,8 @@
 
                 <div class="swiper-slide slide">
                     <div class="content">
-                        <span> Today Special Food </span>
-                        <h3>Spicy Noodles</h3>
+                        <span> Today Restaurant </span>
+                        <h3>GC Khaja Ghar</h3>
                         <a href="#" class="btn">Order now</a>
                     </div>
                     <div class="image">
@@ -364,45 +53,45 @@
 
                 <div class="swiper-slide slide">
                     <div class="content">
-                        <span> Today Special Food </span>
-                        <h3>Momo</h3>
+                        <span> Top Restaurant </span>
+                        <h3>Chully Bar & Restaurant</h3>
                         <a href="#" class="btn">Order now</a>
                     </div>
                     <div class="image">
-                        <img src="images/Momo.jpg" alt="">
+                        <img src="images/CBR.jpg" alt="">
                     </div>
                 </div>
 
                 <div class="swiper-slide slide">
                     <div class="content">
-                        <span> Today Special Food </span>
-                        <h3>Pizza</h3>
+                        <span> Top Restaurant </span>
+                        <h3>DownTown Restaurant & Bar</h3>
                         <a href="#" class="btn">Order now</a>
                     </div>
                     <div class="image">
-                        <img src="images/pizza.jpg" alt="">
+                        <img src="images/DTR.jpg" alt="">
                     </div>
                 </div>
 
                 <div class="swiper-slide slide">
                     <div class="content">
-                        <span> Today Special Food </span>
-                        <h3>Samosa</h3>
+                        <span> Top Restaurant </span>
+                        <h3>The Muglan</h3>
                         <a href="#" class="btn">Order now</a>
                     </div>
                     <div class="image">
-                        <img src="images/samosa.jpg" alt="">
+                        <img src="images/TM.jpg" alt="">
                     </div>
                 </div>
 
                 <div class="swiper-slide slide">
                     <div class="content">
-                        <span> Today Special Food </span>
-                        <h3>Burger</h3>
+                        <span> Top Restaurant </span>
+                        <h3>FishTail Lodge</h3>
                         <a href="#" class="btn">Order now</a>
                     </div>
                     <div class="image">
-                        <img src="images/bur.jpg" alt="">
+                        <img src="images/FTL.jpg" alt="">
                     </div>
 
                 </div>
@@ -414,7 +103,446 @@
 
     </section>
 
-    
+    <section class="dishes" id="dishes">
+        <h3 class="heading">Top Special Dishes</h3>
+        <div class="box-container">
+
+            <div class="box">
+                <a href="#" class="fas fa-heart"></a>
+                <a href="#" class="fas fa-eye"></a>
+                <img src="./images/samosa.jpg" alt="">
+                <h3>Samosa</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>Rs 20</span>
+                <a href="#" class="btn">add to order list</a>
+            </div>
+
+            <div class="box">
+                <a href="#" class="fas fa-heart"></a>
+                <a href="#" class="fas fa-eye"></a>
+                <img src="./images/Momo.jpg" alt="">
+
+                <h3>Momo</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>Rs 120</span>
+                <a href="#" class="btn">add to order list</a>
+            </div>
+
+            <div class="box">
+                <a href="#" class="fas fa-heart"></a>
+                <a href="#" class="fas fa-eye"></a>
+                <img src="./images/bur.jpg" alt="">
+                <h3>Burger</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>Rs 170</span>
+                <a href="#" class="btn">add to order list</a>
+            </div>
+
+            <div class="box">
+                <a href="#" class="fas fa-heart"></a>
+                <a href="#" class="fas fa-eye"></a>
+                <img src="./images/pizza.jpg" alt="">
+                <h3>Pizza</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>Rs 320</span>
+                <a href="#" class="btn">add to order list</a>
+            </div>
+
+            <div class="box">
+                <a href="#" class="fas fa-heart"></a>
+                <a href="#" class="fas fa-eye"></a>
+                <img src="./images/pakoda.jpg" alt="">
+                <h3>Pakoda</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>Rs 25</span>
+                <a href="#" class="btn">add to order list</a>
+            </div>
+
+            <div class="box">
+                <a href="#" class="fas fa-heart"></a>
+                <a href="#" class="fas fa-eye"></a>
+                <img src="./images/Ffish.jpg" alt="">
+                <h3>Fried Fish</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>Rs 150</span>
+                <a href="#" class="btn">add to order list</a>
+            </div>
+
+            <div class="box">
+                <a href="#" class="fas fa-heart"></a>
+                <a href="#" class="fas fa-eye"></a>
+                <img src="./images/Hdog.jpg" alt="">
+                <h3>Hot Dog</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>Rs 110</span>
+                <a href="#" class="btn">add to order list</a>
+            </div>
+
+            <div class="box">
+                <a href="#" class="fas fa-heart"></a>
+                <a href="#" class="fas fa-eye"></a>
+                <img src="./images/Rchicken.jpg" alt="">
+                <h3>Chicken</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>Rs 520</span>
+                <a href="#" class="btn">add to order list</a>
+            </div>
+
+            <div class="box">
+                <a href="#" class="fas fa-heart"></a>
+                <a href="#" class="fas fa-eye"></a>
+                <img src="./images/Rice.jpg" alt="">
+                <h3>Rice</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>Rs 200</span>
+                <a href="#" class="btn">add to order list</a>
+            </div>
+
+            <div class="box">
+                <a href="#" class="fas fa-heart"></a>
+                <a href="#" class="fas fa-eye"></a>
+                <img src="./images/roti.jpg" alt="">
+                <h3>Roti</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>Rs 220</span>
+                <a href="#" class="btn">add to order list</a>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="review" id="review">
+        <h3 class="sub-heading">Customer's review</h3>
+        <h1 class="heading">What Customer's say</h1>
+
+        <div class="swiper-container review-slider">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide slide">
+                    <i class="fas fa-quote-right"></i>
+                    <div class="user">
+                        <img src="images/Gbob.jpg" alt="">
+                        <div class="user-info">
+                            <h3>G-BOB</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        FoodBazar is my go-to food ordering app! The variety of dishes they offer is incredible, and the
+                        taste is always top-notch. The ordering process is seamless, and the delivery is always on time.
+                        I highly recommend trying their signature dishes; they are simply delicious! The app interface
+                        is user-friendly, making it easy to navigate and find what I'm craving.
+                    </p>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <i class="fas fa-quote-right"></i>
+                    <div class="user">
+                        <img src="images/KP ba.jpg" alt="">
+                        <div class="user-info">
+                            <h3>K.P Oli</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        FoodBazar is my go-to food ordering app! The variety of dishes they offer is incredible, and the
+                        taste is always top-notch. The ordering process is seamless, and the delivery is always on time.
+                        I highly recommend trying their signature dishes; they are simply delicious! The app interface
+                        is user-friendly, making it easy to navigate and find what I'm craving.
+                    </p>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <i class="fas fa-quote-right"></i>
+                    <div class="user">
+                        <img src="images/Devraj sir.jpg" alt="">
+                        <div class="user-info">
+                            <h3>Devraj Chalise</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        FoodBazar is my go-to food ordering app! The variety of dishes they offer is incredible, and the
+                        taste is always top-notch. The ordering process is seamless, and the delivery is always on time.
+                        I highly recommend trying their signature dishes; they are simply delicious! The app interface
+                        is user-friendly, making it easy to navigate and find what I'm craving.
+                    </p>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <i class="fas fa-quote-right"></i>
+                    <div class="user">
+                        <img src="images/kiransir.jpg" alt="">
+                        <div class="user-info">
+                            <h3>Kiran K.C</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        FoodBazar is my go-to food ordering app! The variety of dishes they offer is incredible, and the
+                        taste is always top-notch. The ordering process is seamless, and the delivery is always on time.
+                        I highly recommend trying their signature dishes; they are simply delicious! The app interface
+                        is user-friendly, making it easy to navigate and find what I'm craving.
+                    </p>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <i class="fas fa-quote-right"></i>
+                    <div class="user">
+                        <img src="images/adip.jpg" alt="">
+                        <div class="user-info">
+                            <h3>Adhip</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        FoodBazar is my go-to food ordering app! The variety of dishes they offer is incredible, and the
+                        taste is always top-notch. The ordering process is seamless, and the delivery is always on time.
+                        I highly recommend trying their signature dishes; they are simply delicious! The app interface
+                        is user-friendly, making it easy to navigate and find what I'm craving.
+                    </p>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <i class="fas fa-quote-right"></i>
+                    <div class="user">
+                        <img src="images/sudan.jpg" alt="">
+                        <div class="user-info">
+                            <h3>Sudan Bhandari</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        FoodBazar is my go-to food ordering app! The variety of dishes they offer is incredible, and the
+                        taste is always top-notch. The ordering process is seamless, and the delivery is always on time.
+                        I highly recommend trying their signature dishes; they are simply delicious! The app interface
+                        is user-friendly, making it easy to navigate and find what I'm craving.
+                    </p>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <i class="fas fa-quote-right"></i>
+                    <div class="user">
+                        <img src="images/prakash.jpg" alt="">
+                        <div class="user-info">
+                            <h3>Peak Pracash</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        FoodBazar is my go-to food ordering app! The variety of dishes they offer is incredible, and the
+                        taste is always top-notch. The ordering process is seamless, and the delivery is always on time.
+                        I highly recommend trying their signature dishes; they are simply delicious! The app interface
+                        is user-friendly, making it easy to navigate and find what I'm craving.
+                    </p>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <i class="fas fa-quote-right"></i>
+                    <div class="user">
+                        <img src="images/bishal.jpg" alt="">
+                        <div class="user-info">
+                            <h3>Bishal Watson</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        FoodBazar is my go-to food ordering app! The variety of dishes they offer is incredible, and the
+                        taste is always top-notch. The ordering process is seamless, and the delivery is always on time.
+                        I highly recommend trying their signature dishes; they are simply delicious! The app interface
+                        is user-friendly, making it easy to navigate and find what I'm craving.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="about" id="about">
+
+        <h3 class="sub-heading">About Us</h3>
+        <h1 class="heading">Why Choose FoodBazar</h1>
+
+        <div class="row">
+            <div class="image">
+                <img src="images/about.jpg" alt="">
+            </div>
+
+            <div class="content">
+                <h3>Best Food in the Nepal</h3>
+                <p>Welcome to our food ordering web app! We are passionate about connecting you with the best food
+                    options in your area. Our platform brings together a diverse range of restaurants and eateries,
+                    offering a convenient and seamless way to explore and order delicious meals. Whether you're craving
+                    local favorites, international cuisine, or healthy options, we've got you covered. With a
+                    user-friendly interface and secure payment options, you can easily browse menus, customize your
+                    order, and have it delivered right to your doorstep. Join our community of food lovers and let us
+                    satisfy your cravings with exceptional culinary experiences. Order now and enjoy the convenience of
+                    delicious food at your fingertips!</p>
+
+                <div class="icons-container">
+                    <div class="icons">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>Less Delivery charge</span>
+                    </div>
+
+                    <div class="icons">
+                        <i class="fas fa-rupee-sign"></i>
+                        <span>Easy payments</span>
+                    </div>
+
+                    <div class="icons">
+                        <i class="fas fa-headset"></i>
+                        <span>24/7 service</span>
+                    </div>
+                </div>
+                <a href="#" class="btn">learned more</a>
+
+            </div>
+        </div>
+
+    </section>
+
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>Locations</h3>
+                <a href="#">Pokhara-14,Chauthe</a>
+            </div>
+
+            <div class="box">
+                <h3>Quick links</h3>
+                <a href="#">home</a>
+                <a href="#">Dishes</a>
+                <a href="#">Review</a>
+                <a href="#">Contact Us</a>
+                <a href="#">About Us</a>
+            </div>
+
+            <div class="box">
+                <h3>Contact us</h3>
+                <a href="#">+9779826110850</a>
+                <a href="#">+9779826656225</a>
+                <a href="#">nabinpoudel788@gmail.com</a>
+                <a href="#">siwanpoudel9@gmail.com</a>
+            </div>
+
+            <div class="box">
+                <h3>follow us</h3>
+                <a href="#">facebook</a>
+                <a href="#">instagram</a>
+                <a href="#">twiter</a>
+            </div>
+        </div>
+        <div class="credit">copyright @ 2023 by <span>LGIC</span></div>
+    </section>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
@@ -430,6 +558,7 @@
             menu.classList.toggle('fa-times');
             navbar.classList.toggle('active');
         }
+        
         document.querySelector('#search-icon').onclick = () => {
             document.querySelector('#search-form').classList.toggle('active');
         }
@@ -449,12 +578,38 @@
                 el: ".swiper-pagination",
                 clickable: true,
             },
-            loop:true,
-        });    
+            loop: true,
+        });
 
+        var swiper = new Swiper(".review-slider", {
+            spaceBetween: 20,
+            centeredSlides: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            loop: true,
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
 
+                640: {
+                    slidesPerView: 2,
+                },
+
+                768: {
+                    slidesPerView: 3,
+                },
+
+                1024: {
+                    slidesPerView: 3,
+                },
+            }
+        });
 
     </script>
+
 </body>
 
-</html>
+</html> 
