@@ -3,15 +3,21 @@ First Week: Team Formed
             Language Choose
             Problem Identification
             Resource Collection
-            language learned
+            language learned: MongoDB, Express and Nodejs
             
 Secound Week: MEN learned
               created simple Login and SignUp and Reset Page page using EJS and Nodejs
 
 Third Week:  MEN learned
-             Running task Dashboard
-             Connect database
-             Integrate login and Signup API
+             Practice database connection
+             
+Fourth Week: MEN learned
+             create and designing simple Homw screen
+             Resource Collection
+             
+Five Week:  MEN learned
+            Integrate Longin,signup and Reset page with Home screen
+            Making responsive WebApp
 
             
 
