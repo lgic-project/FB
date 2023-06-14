@@ -1,24 +1,24 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"); // Importing the mongoose library
 
 const userSchema = mongoose.Schema(
   {
     username: {
       type: String,
-      required: [true, "Please add the user name"],
+      required: [true, "Please add the user name"], // Field validation for username, it is required
     },
     email: {
       type: String,
-      required: [true, "Please add the user email address"],
-      unique: [true, "Email address already taken"],
+      required: [true, "Please add the user email address"], // Field validation for email, it is required
+      unique: [true, "Email address already taken"], // Field validation for email, it should be unique
     },
     password: {
       type: String,
-      required: [true, "Please add the user password"],
+      required: [true, "Please add the user password"], // Field validation for password, it is required
     },
   },
   {
-    timestamps: true,
+    timestamps: true, // Adding timestamps to the userSchema (createdAt and updatedAt fields)
   }
 );
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("User", userSchema); // Creating and exporting a User model based on the userSchema
