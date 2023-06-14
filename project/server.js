@@ -12,9 +12,8 @@ const port = 2023
 const bcrypt = require("bcrypt")
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/users", require("./routes/userRoutes"))
+app.use("users", require("./routes/userRoutes"))
 
 app.listen(port,()=>{
     console.log("server lsiten from port", port);
