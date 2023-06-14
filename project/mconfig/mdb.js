@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 
-const db = 'mongodb+srv://nabinpoudel788:whathell2000@cluster0.fbhuoqq.mongodb.net/cluster0?retryWrites=true&w=majority';
+const db = process.env.DB_DATABASE;
 mongoose.connect(db);
 
 const userSchema = new mongoose.Schema({
