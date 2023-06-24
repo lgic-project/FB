@@ -1,3 +1,3 @@
-# Login, SignUp and Reset page  
-# login,signup with jwt and rest api
- 
+# login,signup with jwt, joi and rest api
+# Fooditem crud operation
+# order place,cancel and status update api
