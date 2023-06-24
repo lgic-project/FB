@@ -16,8 +16,21 @@ Fourth Week: MEN learned
              Resource Collection
              
 Five Week:  MEN learned
-            Integrate Longin,signup and Reset page with Home screen
+            testing Integration of Longin,signup and Reset page with Home screen
             Making responsive WebApp
+            documentation
+
+Sixt Week: MEN learned
+           lofin signup api with auth jwt and joi
+           api for fooditems add,delete,read and update
+           documentation for weekly report
+
+sevent Week: MEN learned
+             Api Order place,calcel and status update
+             documentation for weekly report
+             
+             
+           
 
             
 
