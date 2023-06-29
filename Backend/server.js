@@ -1,26 +1,31 @@
-require("./Database/dcConnection")
-const registerRoutes = require("./routes/register")
-const loginRoutes = require("./routes/login")
-const foods = require("./routes/food")
-const order = require("./routes/order")
+require("./Database/dcConnection");
+const registerRoutes = require("./routes/register");
+const loginRoutes = require("./routes/login");
+const logoutRoutes = require("./routes/logout");
+const { authenticateToken } = require("./middleware/auth");
 
-require("dotenv").config();
-const cors = require("cors");
+
+const cookieParser = require("cookie-parser");
 const express = require("express");
 const app = express();
 
+require("dotenv").config();
+const cors = require("cors");
+app.use(cookieParser());
+
 const PORT = process.env.PORT;
 
-// middleware
+// Middleware
 app.use(express.json());
 app.use(cors());
 
-// routes
-app.use("/api/", registerRoutes);
-app.use("/api/", loginRoutes);
-app.use("/api/food", foods)
-app.use("/api/order", order)
+// user Routes
+app.use("/api/users", registerRoutes, loginRoutes, logoutRoutes);
+
+app.get("/home", authenticateToken, (req, res) => {
+  res.send('Welcome to the home page!');
+});
 
 app.listen(PORT, () => {
-    console.log("serverlisten from port ",PORT);
-})
+  console.log("Server listening on port", PORT);
+});
