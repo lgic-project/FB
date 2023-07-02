@@ -1,7 +1,9 @@
-const logoutController = (req, res) => {
-    // Clear the token cookie
-    res.clearCookie('token');
-    res.send('Logout successful.');
-};
+const router = require("express").Router();
 
-module.exports = logoutController;
+const logoutController = require("../controllers/logout");
+
+
+router.post("/logout", logoutController);
+
+
+module.exports = router;
