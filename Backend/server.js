@@ -2,7 +2,9 @@ require("./Database/dcConnection");
 const registerRoutes = require("./routes/register");
 const loginRoutes = require("./routes/login");
 const logoutRoutes = require("./routes/logout");
-const { authenticateToken } = require("./middleware/auth");
+const { authenticateToken } = require("./middleware/userAuth");
+const adminRoutes = require('./routes/admin');
+const adminAuth = require("./middleware/adminAuth");
 const foods = require("./routes/menu");
 const order = require("./routes/order");
 
@@ -28,12 +30,16 @@ app.get("/home", authenticateToken, (req, res) => {
   res.send('Welcome to the home page!');
 });
 
+app.use('/api/admin', adminRoutes);
+
+
 // menu routes
-app.use("/api/food", foods);
+app.use("/api/admin/", adminAuth, foods);
 
 // order routes
-app.use("/api/order", order);
+app.use("/api/admin/",  adminAuth, order);
 
 app.listen(PORT, () => {
   console.log("Server listening on port", PORT);
 });
+
