@@ -1,24 +1,27 @@
 const Cart = require('../models/cart');
 
-// Add item to cart
 const addItemToCart = async (req, res) => {
   try {
-    const { userId, foodItemId, quantity } = req.body;
+    const { userId, items } = req.body;
+    console.log('Request Body:', req.body);
 
     const cart = await Cart.findOne({ userId });
 
     if (!cart) {
       // If cart doesn't exist, create a new cart for the user
-      const newCart = new Cart({ userId, items: [{ foodItemId, quantity }] });
+      const newCart = new Cart({ userId, items });
       await newCart.save();
     } else {
       // If cart exists, add the item to the cart or update the quantity if already present
-      const itemIndex = cart.items.findIndex(item => item.foodItemId === foodItemId);
+      for (const item of items) {
+        const { foodItemId, quantity } = item;
+        const itemIndex = cart.items.findIndex(item => item.foodItemId === foodItemId);
 
-      if (itemIndex === -1) {
-        cart.items.push({ foodItemId, quantity });
-      } else {
-        cart.items[itemIndex].quantity += quantity;
+        if (itemIndex === -1) {
+          cart.items.push({ foodItemId, quantity });
+        } else {
+          cart.items[itemIndex].quantity += quantity;
+        }
       }
 
       await cart.save();
@@ -26,9 +29,12 @@ const addItemToCart = async (req, res) => {
 
     res.status(200).json({ message: 'foodItem added to cart successfully' });
   } catch (error) {
+    console.error('Error while adding the item to the cart:', error);
     res.status(500).json({ message: 'An error occurred while adding the item to the cart' });
   }
 };
+
+
 
 // Get cart items
 const getCartItems = async (req, res) => {
@@ -43,7 +49,6 @@ const getCartItems = async (req, res) => {
   }
 };
 
-// Update cart item quantity
 const updateCartItemQuantity = async (req, res) => {
   try {
     const { userId, foodItemId } = req.params;
@@ -59,12 +64,14 @@ const updateCartItemQuantity = async (req, res) => {
 
     cart.items[itemIndex].quantity = quantity;
     await cart.save();
+    
 
-    res.status(200).json({ message: 'foodItem  quantity updated successfully' });
+    res.status(200).json({ message: 'foodItem quantity updated successfully' });
   } catch (error) {
     res.status(500).json({ message: 'An error occurred while updating the cart item quantity' });
   }
 };
+
 
 // Remove item from cart
 const removeItemFromCart = async (req, res) => {
