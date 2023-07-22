@@ -1,4 +1,5 @@
 # login,signup with jwt, joi and rest api
 # Fooditem crud operation
-# order place,cancel and status update api
+# order and status update CRUD operation
+# cart crud operation
 # State management using Redux
