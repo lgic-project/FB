@@ -49,6 +49,7 @@ const getCartItems = async (req, res) => {
   }
 };
 
+// update cartItems
 const updateCartItemQuantity = async (req, res) => {
   try {
     const { userId, foodItemId } = req.params;
@@ -56,7 +57,11 @@ const updateCartItemQuantity = async (req, res) => {
 
     const cart = await Cart.findOne({ userId });
 
-    const itemIndex = cart.items.findIndex(item => item.foodItemId === foodItemId);
+    console.log('Cart:', cart);
+
+    const itemIndex = cart.items.findIndex((item) => item.foodItemId.equals(foodItemId));
+
+    console.log('Item Index:', itemIndex);
 
     if (itemIndex === -1) {
       return res.status(404).json({ message: 'foodItem not found in cart' });
@@ -67,10 +72,12 @@ const updateCartItemQuantity = async (req, res) => {
     
 
     res.status(200).json({ message: 'foodItem quantity updated successfully' });
+    
   } catch (error) {
     res.status(500).json({ message: 'An error occurred while updating the cart item quantity' });
   }
 };
+
 
 
 // Remove item from cart
@@ -80,7 +87,7 @@ const removeItemFromCart = async (req, res) => {
 
     const cart = await Cart.findOne({ userId });
 
-    const itemIndex = cart.items.findIndex(item => item.foodItemId === foodItemId);
+    const itemIndex = cart.items.findIndex((item) => item.foodItemId.equals(foodItemId));
 
     if (itemIndex === -1) {
       return res.status(404).json({ message: 'foodItem not found in cart' });
