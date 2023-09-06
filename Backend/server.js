@@ -37,10 +37,10 @@ app.use('/api/admin', adminRoutes);
 
 
 // menu routes
-app.use("/api/admin/", adminAuth, foods);
+app.use("/api/admin/foods", adminAuth, foods);
 
 // order routes
-app.use("/api/admin/",  adminAuth, order);
+app.use("/api/admin/order",  adminAuth, order);
 
 app.listen(PORT, () => {
   console.log("Server listening on port", PORT);
