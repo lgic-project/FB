@@ -89,7 +89,7 @@ const cancelOrder = async (req, res) => {
         message: "Order not found"
       });
 
-    if (order.status !== "Pending")
+    if (order.status !== "pending")
       return res.status(400).json({
         success: false,
         message: "Order cannot be canceled due to order confirmation"
