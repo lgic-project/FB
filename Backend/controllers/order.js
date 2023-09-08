@@ -14,6 +14,19 @@ const placeOrder = async (req, res) => {
   }
 };
 
+const getOrder = async (req,res) => {
+  try {
+    const order = await Order.find();
+    res.status(200).json({
+      sucess: true, order
+    });
+  } catch (error) {
+    res.staus(500).json({
+      error: "internal Server error"
+    })
+  }
+}
+
 const getOrderById = async (req, res) => {
   try {
     const order = await Order.findById(req.params.orderId);
