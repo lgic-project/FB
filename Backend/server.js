@@ -31,6 +31,7 @@ app.get("/home", authenticateToken, (req, res) => {
   res.send('Welcome to the home page!');
 });
 
+// cart routes
 app.use("/api/user/cart", authenticateToken, cartRoutes);
 
 app.use('/api/admin', adminRoutes);
