@@ -1,6 +1,5 @@
-const express = require('express');
-const router = express.Router();
-const {registerAdmin, loginAdmin, logoutAdmin} = require('../controllers/adminController');
+const router = require("express").Router();
+const {registerAdmin, loginAdmin, logoutAdmin} = require('../controllers/admin');
 
 router.post('/register', registerAdmin);
 router.post('/login', loginAdmin);
