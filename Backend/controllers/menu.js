@@ -1,13 +1,29 @@
 const Food = require("../models/menu");
+const upload = require("../middleware/multer");
 
 const addFood = async (req, res) => {
   try {
-    const newFood = await Food.create(req.body);
 
+    // using multer
+    upload.single('image')(req,res,async function (err) {
+      if (err) {
+        return res.status(400).json({ error: 'Sorry, failed to upload Image', message: err.message});
+      }
+
+        // Create a new food document with image file path
+        const newFood = await Food.create({
+          name: req.body.name,
+          description: req.body.description,
+          price: req.body.price,
+          availability: req.body.availability,
+          imagePath: req.file.path, // Save the image file path in the database
+        });
+        
     res.status(200).json({
       success: true, newFood,
       message: "food added successfully"
     });
+  });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }
