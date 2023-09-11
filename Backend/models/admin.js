@@ -29,6 +29,7 @@ const Admin = mongoose.model("Admin", adminSchema);
 
 const validate = (data) => {
   const schema = joi.object({
+    adminname: joi.string().required().label("adminname"),
     email: joi.string().email().required().label("Email"),
     password: passwordComplexity().required().label("Password")
   });
