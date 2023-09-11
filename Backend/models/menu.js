@@ -14,10 +14,14 @@ const foodSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    image: {
+        type: String,
+    },
     availability: {
         type: Boolean,
         required: true
     },
+    
 });
 
 const food = mongoose.model("food", foodSchema);
