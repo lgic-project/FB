@@ -20,7 +20,7 @@ const adminSchema = new mongoose.Schema({
 
 adminSchema.methods.generateAuthToken = function () {
   const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: "7d"
+    expiresIn: "365d"
   });
   return token;
 };
@@ -29,7 +29,6 @@ const Admin = mongoose.model("Admin", adminSchema);
 
 const validate = (data) => {
   const schema = joi.object({
-    adminname: joi.string().required().label("adminname"),
     email: joi.string().email().required().label("Email"),
     password: passwordComplexity().required().label("Password")
   });
