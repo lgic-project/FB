@@ -1,7 +1,5 @@
 require("./Database/dcConnection");
-const registerRoutes = require("./routes/register");
-const loginRoutes = require("./routes/login");
-const logoutRoutes = require("./routes/logout");
+const userRoutes = require("./routes/user");
 const cartRoutes = require("./routes/cart");
 const { authenticateToken } = require("./middleware/userAuth");
 const adminRoutes = require('./routes/admin');
@@ -25,7 +23,7 @@ app.use(express.json());
 app.use(cors());
 
 // user Routes
-app.use("/api/users", registerRoutes, loginRoutes, logoutRoutes);
+app.use("/api/users", userRoutes);
 
 app.get("/home", authenticateToken, (req, res) => {
   res.send('Welcome to the home page!');
@@ -34,6 +32,8 @@ app.get("/home", authenticateToken, (req, res) => {
 // cart routes
 app.use("/api/user/cart", authenticateToken, cartRoutes);
 
+
+// admin routes
 app.use('/api/admin', adminRoutes);
 
 
