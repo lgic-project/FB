@@ -14,9 +14,9 @@ const foodSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    image: {
+    image: [{
         type: String,
-    },
+    }],
     availability: {
         type: Boolean,
         required: true
