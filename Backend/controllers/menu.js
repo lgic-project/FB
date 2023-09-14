@@ -39,6 +39,23 @@ const getFoods = async (req, res) => {
   }
 };
 
+const getFoodById = async (req,res) => {
+  try {
+    const foods = await Food.findById(req.params.id);
+    if(!foods)
+    return res.status(404).json({
+  success: false,
+  message: "food not found"});
+
+  res.status(200).json({
+    success: true,
+    foods
+  });
+  } catch (error){
+    res.status(500).json({ error: "Internal server error"});
+  }
+};
+
 const updateFood = async (req, res) => {
   try {
     let existingFood = await Food.findById(req.params.id);
@@ -91,6 +108,7 @@ const deleteFood = async (req, res) => {
 module.exports = {
   addFood,
   getFoods,
+  getFoodById,
   updateFood,
   deleteFood
 };
