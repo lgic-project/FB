@@ -10,7 +10,7 @@ const orderSchema = new mongoose.Schema({
     {
       foodItem: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "FoodItem",
+        ref: "food",
         required: true
       },
       quantity: {
@@ -19,16 +19,29 @@ const orderSchema = new mongoose.Schema({
       }
     }
   ],
-  status: {
+customerName :{
+    type: String,
+    required: [true, " Please Insert your name "]
+},
+phoneNumber: {
+    type: Number,
+    required: [10, " Phone number contain 10 digit number"]
+},
+address: {
+    type: String,
+    required: [true, " Please insert your location "]
+},
+status: {
     type: String,
     enum: ["pending", "confirmed", "delivered", "canceled"],
     default: "pending"
   },
-  createdAt: {
+createdDate: {
     type: Date,
-    default: Date.now
-  }
+    Default: Date.now
+}
 });
+
 
 const Order = mongoose.model("Order", orderSchema);
 
