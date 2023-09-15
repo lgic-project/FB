@@ -1,8 +1,5 @@
 const router = require("express").Router();
-const {placeOrder,getOrder,getOrderById,getOrdersByUser,updateOrderStatus,cancelOrder}= require("../controllers/order");
-
-// Place a new order
-router.post("/placeOrder", placeOrder)
+const {getOrder,getOrderById,getOrdersByUser,updateOrderStatus,cancelOrder}= require("../controllers/order");
 
 // Get the list of all order
 router.get("/orderList", getOrder)
