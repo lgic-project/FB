@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const Food = require("../models/menu");
 const {User, validate} = require('../models/user');
 
 // Register user
@@ -50,10 +51,27 @@ const loginUser = async (req, res) => {
     }
   };
 
+  // ...
+
+    const getFoodByUser = async (req, res) => {
+      try {
+        const foods = await Food.find({ availability: true }); // Filter available food items
+    
+        res.status(200).json({ success: true, foods }); // Return JSON data
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+}
+
+// ...
+
+
   const logoutUser = (req, res) => {
     // Clear the token cookie
     res.clearCookie('token');
     res.send('Logout successful.');
 };
 
-module.exports = { registerUser, loginUser, logoutUser };
+module.exports = { registerUser, loginUser, logoutUser, getFoodByUser };
+
