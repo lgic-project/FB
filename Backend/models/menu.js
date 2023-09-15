@@ -6,6 +6,10 @@ const foodSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    quantity: {
+        type: Number,
+        required: true
+    },
     description: {
         type: String,
         required: true
@@ -14,9 +18,10 @@ const foodSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    image: [{
-        type: String,
-    }],
+    images: [{
+        type: String, // Store image URLs as strings
+      }],
+
     availability: {
         type: Boolean,
         required: true
@@ -27,4 +32,3 @@ const foodSchema = new mongoose.Schema({
 const food = mongoose.model("food", foodSchema);
 
 module.exports = food;
-
