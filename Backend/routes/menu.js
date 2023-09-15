@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const adminAuth = require("../middelware/adminAuth");
 const {
   addFood,
   getFoods,
@@ -7,10 +8,10 @@ const {
   deleteFood
 } = require("../controllers/menu");
 
-router.post("/addFood", addFood);
+router.post("/addFood",adminAuth, addFood);
 router.get("/foods", getFoods);
 router.get("/:id", getFoodByID);
-router.put("/:id", updateFood);
-router.delete("/:id", deleteFood);
+router.put("/:id",adminAuth, updateFood);
+router.delete("/:id",adminAuth, deleteFood);
 
 module.exports = router;
