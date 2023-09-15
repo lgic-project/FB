@@ -50,10 +50,31 @@ const loginAdmin = async (req, res) => {
     }
   };
 
+  const getAdminData = async (req, res) => {
+    try {
+        // access the logged in admin data from req.user
+        const admin = await Admin.findById(req.user._id);
+
+        if (!admin) {
+            return res.status(404).send({ message: "Admin not found" });
+        }
+
+        const adminData = {
+            adminname: admin.adminname,
+            email: admin.email,
+            password: admin.password
+        };
+
+        res.status(200).send({ data: adminData, message: "Admin data display successfully" });
+    } catch (error) {
+        res.status(500).send({ message: "Internal Server error" });
+    }
+};
+
   const logoutAdmin = (req, res) => {
     // Clear the token cookie
     res.clearCookie('token');
     res.send('Logout successful.');
 };
 
-module.exports = { registerAdmin, loginAdmin, logoutAdmin };
+module.exports = { registerAdmin, loginAdmin, logoutAdmin, getAdminData };
