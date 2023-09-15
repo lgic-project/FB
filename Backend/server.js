@@ -38,7 +38,7 @@ app.use('/api/admin', adminRoutes);
 
 
 // menu routes
-app.use("/api/admin/foods", adminAuth, foods);
+app.use("/api/admin/foods", foods);
 
 // order routes
 app.use("/api/admin/order",  adminAuth, order);
