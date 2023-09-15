@@ -6,6 +6,9 @@ const adminRoutes = require('./routes/admin');
 const adminAuth = require("./middleware/adminAuth");
 const foods = require("./routes/menu");
 const order = require("./routes/order");
+const orderRoutes = require("./routes/userOrderRoutes")
+
+
 
 
 const cookieParser = require("cookie-parser");
@@ -42,6 +45,10 @@ app.use("/api/admin/foods", foods);
 
 // order routes
 app.use("/api/admin/order",  adminAuth, order);
+
+// user order
+app.use("/api/user/order", orderRoutes);
+
 
 app.listen(PORT, () => {
   console.log("Server listening on port", PORT);
