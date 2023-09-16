@@ -4,52 +4,51 @@ const orderSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: true
+    required: true,
   },
   items: [
     {
       foodItem: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "food",
-        required: true
+        required: true,
+      },
+      foodName: {
+        type: String, // Assuming foodName is a string
+        required: true,
       },
       quantity: {
         type: Number,
-        required: true
-      }
-    }
+        required: true,
+      },
+      price: {
+        type: Number,
+        required: true,
+      },
+    },
   ],
-  food : {
+  customerName: {
     type: String,
-    required: true
+    required: [true, "Please Insert your name"],
   },
-  price : {
+  phoneNumber: {
     type: Number,
-    required: true
+    required: [true, "Phone number must contain 10 digits"],
   },
-customerName :{
+  address: {
     type: String,
-    required: [true, " Please Insert your name "]
-},
-phoneNumber: {
-    type: Number,
-    required: [10, " Phone number contain 10 digit number"]
-},
-address: {
-    type: String,
-    required: [true, " Please insert your location "]
-},
-status: {
+    required: [true, "Please insert your location"],
+  },
+  status: {
     type: String,
     enum: ["pending", "confirmed", "delivered", "canceled"],
-    default: "pending"
+    default: "pending",
   },
-createdDate: {
+  createdDate: {
     type: Date,
-    Default: Date.now
-}
+    default: Date.now,
+  },
 });
-
 
 const Order = mongoose.model("Order", orderSchema);
 
