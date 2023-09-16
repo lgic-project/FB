@@ -66,6 +66,24 @@ const loginUser = async (req, res) => {
 
 // ...
 
+// Get all user
+const getUser = async (req,res) => {
+  try {
+    const user = await User.find();
+
+    const count = user.length;
+
+    res.status(200).json({
+      users: count,
+      sucess: true,
+      user
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: " Internal server errror "
+    })
+  }
+}
 
   const logoutUser = (req, res) => {
     // Clear the token cookie
@@ -73,5 +91,5 @@ const loginUser = async (req, res) => {
     res.send('Logout successful.');
 };
 
-module.exports = { registerUser, loginUser, logoutUser, getFoodByUser };
+module.exports = { registerUser, loginUser, logoutUser, getFoodByUser, getUser };
 
