@@ -85,11 +85,36 @@ const getUser = async (req,res) => {
   }
 }
 
+// get user by Id
+const getUserById = async(req,res) => {
+  try{
+
+    const user = await User.findById(req.params.userId);
+
+    if(!user)
+      res.status(500).json({
+        sucess: false,
+        message: "User not found"
+      });
+
+    res.status(200).json({
+      sucess: true,
+      user
+    });
+
+  } catch (error) {
+    console.log(error);
+    res.status(200).json({
+      error:"Internal server error"
+    });
+  }
+}
+
   const logoutUser = (req, res) => {
     // Clear the token cookie
     res.clearCookie('token');
     res.send('Logout successful.');
 };
 
-module.exports = { registerUser, loginUser, logoutUser, getFoodByUser, getUser };
+module.exports = { registerUser, loginUser, logoutUser, getFoodByUser, getUser, getUserById };
 
