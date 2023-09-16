@@ -2,14 +2,32 @@ const Order = require("../models/order");
 
 const placeOrder = async (req, res) => {
   try {
-    const newOrder = await Order.create(req.body);
+    const orderData = req.body;
+
+    // Create an array of items
+    const items = orderData.items.map((item) => ({
+      foodItem: item.foodItem,
+      foodName: item.foodName,
+      quantity: item.quantity,
+      price: item.price,
+    }));
+
+    const newOrder = await Order.create({
+      user: orderData.user,
+      items: items,
+      customerName: orderData.customerName,
+      phoneNumber: orderData.phoneNumber,
+      address: orderData.address,
+      status: orderData.status, 
+    });
 
     res.status(200).json({
       success: true,
       message: "Order placed successfully",
-      order: newOrder
+      order: newOrder,
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
