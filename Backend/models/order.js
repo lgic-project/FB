@@ -19,6 +19,14 @@ const orderSchema = new mongoose.Schema({
       }
     }
   ],
+  food : {
+    type: String,
+    required: true
+  },
+  price : {
+    type: Number,
+    required: true
+  },
 customerName :{
     type: String,
     required: [true, " Please Insert your name "]
