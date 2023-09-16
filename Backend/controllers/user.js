@@ -110,11 +110,30 @@ const getUserById = async(req,res) => {
   }
 }
 
+  const getUserInfo = async (req, res) => {
+    try {
+      // Assuming you have stored user information in the request object during authentication
+      const { _id, email} = req.user;
+  
+      res.status(200).json({
+        success: true,
+        user: {
+          id: _id,
+          email: email,
+          // Include other user properties here if needed
+        },
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  };
+
   const logoutUser = (req, res) => {
     // Clear the token cookie
     res.clearCookie('token');
     res.send('Logout successful.');
 };
 
-module.exports = { registerUser, loginUser, logoutUser, getFoodByUser, getUser, getUserById };
+module.exports = { registerUser, loginUser, logoutUser, getFoodByUser, getUser, getUserById, getUserInfo };
 
