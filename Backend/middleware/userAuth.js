@@ -5,7 +5,7 @@ const authenticateToken = (req, res, next) => {
   const token = req.cookies.token;
 
   if (!token) {
-    return res.status(401).send('Access denied. Please log in.');
+    return res.status(401).send('Please logIn first.');
   }
 
   jwt.verify(token, process.env.JWTPRIVATEKEY, (err, user) => {
